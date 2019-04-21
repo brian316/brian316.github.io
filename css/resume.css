@@ -210,3 +210,7 @@ a:hover, a:focus, a:active {
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+
+.footnotes {
+  font-size: .8rem;
+}
