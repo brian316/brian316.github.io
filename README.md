@@ -4,7 +4,7 @@
 
 ## Preview
 
-[![Resume Preview](https://startbootstrap.com/assets/img/screenshots/themes/resume.png)](https://brian316.github.io/)
+[![Resume Preview](https://github.com/brian316/brian316.github.io/blob/master/img/portfolio_thumbnail.PNG)](https://brian316.github.io/)
 
 **[View Live Preview](https://brian316.github.io/)**
 
