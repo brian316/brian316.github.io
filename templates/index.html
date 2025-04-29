@@ -38,21 +38,21 @@
                         {% endfor %}
                         {% if config.extra.github %}
                         <li class="nav">
-                            <a itemprop="url" href="https://github.com/{{ config.extra.github }}">
+                            <a itemprop="url" href="https://github.com/{{ config.extra.github }}" target="_blank">
                                 <img class="icon" src="{{ config.base_url }}/icons/github.svg" alt="Github">
                             </a>
                         </li>
                         {% endif %}
                         {% if config.extra.linkedin %}
                         <li class="nav">
-                            <a itemprop="url" href="https://linkedin.com/in/{{ config.extra.linkedin }}">
+                            <a itemprop="url" href="https://linkedin.com/in/{{ config.extra.linkedin }}" target="_blank">
                                 <img class="icon" src="{{ config.base_url }}/icons/linkedin.svg" alt="LinkedIn">
                             </a>
                         </li>
                         {% endif %}
                         {% if config.extra.twitter %}
                         <li class="nav">
-                            <a itemprop="url" href="https://twitter.com/{{ config.extra.twitter }}">
+                            <a itemprop="url" href="https://twitter.com/{{ config.extra.twitter }}" target="_blank">
                                 <img class="icon" src="{{ config.base_url }}/icons/twitter.svg" alt="Twitter">
                             </a>
                         </li>
@@ -106,8 +106,8 @@
                     Copyright &copy; {{ config.extra.author }}
                 </small>
                 <small class="footer-right">
-                    Powered by <a href="https://www.getzola.org">Zola</a>
-                    <!-- Powered by <a href="https://www.getzola.org">Zola</a> | Theme <a href="https://github.com/barlog-m/oceanic-zen">Oceanic Zen</a> -->
+                    Powered by <a href="https://www.getzola.org" target="_blank">Zola</a>
+                    <!-- Powered by <a href="https://www.getzola.org" target="_blank">Zola</a> | Theme <a href="https://github.com/barlog-m/oceanic-zen" target="_blank">Oceanic Zen</a> -->
                 </small>
             </div>
         {% endblock footer %}
