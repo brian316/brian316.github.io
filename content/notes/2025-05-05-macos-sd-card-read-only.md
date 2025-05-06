@@ -6,7 +6,7 @@ title = "macOS SD Card Read Only Issues"
 
 ## Problem
 
-I bought a cheap amazon basics micro sd card and inserted it with the adapter into my macbook M1. Thinking things would go smoothly (somehow they never do) I only had read access to the card. I tried everything from disk utilities First Aid, formatting to exFAT and MS-DOS (FAT), and dangerously typing commands from the interwebs into my terminal... cough, of course I have common sense enough to know what they are doing. Nothing worked. It was simply stuck on readonly mode. I had given up hope and started my amazon return thinking I had a defective device maybe even a fake sd card, but then I found my solution.
+I bought a cheap amazon basics micro sd card and inserted it with the adapter into my macbook M1. Thinking things would go smoothly (somehow they never do) I only had read access to the card. I tried everything from disk utilities First Aid, formatting to exFAT and MS-DOS (FAT), and dangerously typing commands from the interwebs into my terminal... cough, of course I have common sense enough to know what they are doing. Nothing worked. It was simply stuck on readonly mode. I had given up hope and started my amazon return thinking I had a defective device maybe even a fake sd card, but then I used a known working sd card and same issue! I had to dig deeper to find my solution.
 
 
 ## System Check
