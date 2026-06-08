@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta name="description" content="Personal blog">
+        
+
+        <title>Brian Duenas | Software Engineer</title>
+
+        
+            <link rel="stylesheet" href="https://bduenas.com/theme.css">
+        
+        
+    </head>
+    <body>
+        <div class="content">
+        
+        
+            <header>
+                <div class="header-left">
+                    <a href="https:&#x2F;&#x2F;bduenas.com" class="logo">Brian Duenas | Software Engineer</a>
+                </div>
+                <div class="header-right">
+                    <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+                      <ul>
+                        
+                        
+                            
+                            <li class="nav">
+                                <a itemprop="url" href="https://bduenas.com/about/">
+                                    <span itemprop="name">&#x2F;About</span>
+                                </a>
+                            </li>
+                        
+                            
+                            <li class="nav">
+                                <a itemprop="url" href="https://bduenas.com/blog/">
+                                    <span itemprop="name">&#x2F;Blog</span>
+                                </a>
+                            </li>
+                        
+                            
+                            <li class="nav">
+                                <a itemprop="url" href="https://bduenas.com/notes/">
+                                    <span itemprop="name">&#x2F;Notes</span>
+                                </a>
+                            </li>
+                        
+                        
+                        <li class="nav">
+                            <a itemprop="url" href="https://github.com/brian316" target="_blank">
+                                <img class="icon" src="https:&#x2F;&#x2F;bduenas.com/icons/github.svg" alt="Github">
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="nav">
+                            <a itemprop="url" href="https://linkedin.com/in/duenas-brian" target="_blank">
+                                <img class="icon" src="https:&#x2F;&#x2F;bduenas.com/icons/linkedin.svg" alt="LinkedIn">
+                            </a>
+                        </li>
+                        
+                        
+                      </ul>
+                    </nav>
+                </div>
+            </header>
+        
+        
+        <main>
+            
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <div itemprop="headline">
+        <h1>macOS SD Card Read Only Issues</h1>
+        <div class="border"></div>
+        <time datetime="2025-05-05" class="date" itemprop="datePublished">
+            05 May 2025
+        </time>
+    </div>
+    <div itemprop="articleBody">
+        <p><a href="https://bduenas.com/notes/macos-sd-card-read-only/#solution">tl;dr</a></p>
+<h2 id="problem">Problem</h2>
+<p>I bought a cheap amazon basics micro sd card and inserted it with the adapter into my macbook M1. Thinking things would go smoothly (somehow they never do) I only had read access to the card. I tried everything from disk utilities First Aid, formatting to exFAT and MS-DOS (FAT), and dangerously typing commands from the interwebs into my terminal... cough, of course I have common sense enough to know what they are doing. Nothing worked. It was simply stuck on readonly mode. I had given up hope and started my amazon return thinking I had a defective device maybe even a fake sd card, but then I used a known working sd card and same issue! I had to dig deeper to find my solution.</p>
+<h2 id="system-check">System Check</h2>
+<p>Insert your sd card and check the volume info</p>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #DCDCAA;">diskutil</span><span style="color: #CE9178;"> info /Volumes/YOUR_CARD_NAME</span></span></code></pre>
+<p>look for this line. If present you have the issue!</p>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #DCDCAA;">Volume</span><span style="color: #CE9178;"> Read-Only:          Yes</span><span> (read-only</span><span style="color: #CE9178;"> mount flag set</span><span>)</span></span></code></pre><!-- [script](/scripts/sdcard_fix.sh?view=true) -->
+<p>Use macbooks <code>Disk Utility</code> to erase/format your sd card to the desired format and take note of that format. For me I needed to use <code>msdos</code> format so it can be read my 3d printer find (Creality Ender-3 v2 Neo).</p>
+<h2 id="solution">Solution</h2>
+<p>Now for the hack! We are going to manually mount the disk as a read/write volume.</p>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #6A9955;"># get volume device name</span></span>
+<span class="giallo-l"><span style="color: #DCDCAA;">diskutil</span><span style="color: #CE9178;"> info /Volumes/SDCARD</span><span> |</span><span style="color: #DCDCAA;">grep</span><span style="color: #CE9178;"> /dev</span></span></code></pre>
+<p>if using <code>exfat</code> then replace <code>msdos</code> with <code>exfat</code></p>
+<pre class="giallo" style="color: #D4D4D4; background-color: #1E1E1E;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #DCDCAA;">sudo</span><span style="color: #CE9178;"> umount /Volumes/SDCARD</span></span>
+<span class="giallo-l"><span style="color: #DCDCAA;">sudo</span><span style="color: #CE9178;"> mkdir</span><span style="color: #569CD6;"> -p</span><span style="color: #CE9178;"> /Volumes/SDCARD</span></span>
+<span class="giallo-l"><span style="color: #DCDCAA;">sudo</span><span style="color: #CE9178;"> mount</span><span style="color: #569CD6;"> -t</span><span style="color: #CE9178;"> msdos</span><span style="color: #569CD6;"> -o</span><span style="color: #CE9178;"> rw /dev/disk6s1 /Volumes/SDCARD</span></span></code></pre><h2 id="conclusion">Conclusion</h2>
+<p>Like I said this is a hack so everytime you insert your sdcard you'll have to run the set of commands. Not ideal, but we are programmers or maybe just script kiddies so just create a script to run whenever you need it. Hopefully I figure out the issue in the future and I update this soon.</p>
+<p>~ Maybe it's my machine!</p>
+
+    </div>
+</article>
+
+        </main>
+        
+        <footer>
+            
+            <div class="border"></div>
+            <div class="footer">
+                <small class="footer-left">
+                    Copyright &copy; ßrian Duenas
+                </small>
+
+            </div>
+        
+        </footer>
+    
+        </div>
+    </body>
+</html>

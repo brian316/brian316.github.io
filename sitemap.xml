@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://bduenas.com/</loc>
+    </url>
+    <url>
+        <loc>https://bduenas.com/about/</loc>
+    </url>
+    <url>
+        <loc>https://bduenas.com/blog/</loc>
+    </url>
+    <url>
+        <loc>https://bduenas.com/blog/init-blog/</loc>
+        <lastmod>2025-04-29</lastmod>
+    </url>
+    <url>
+        <loc>https://bduenas.com/notes/</loc>
+    </url>
+    <url>
+        <loc>https://bduenas.com/notes/macos-sd-card-read-only/</loc>
+        <lastmod>2025-05-05</lastmod>
+    </url>
+</urlset>
