@@ -38,7 +38,7 @@
             {% for job in r.jobs %}
             <article class="job">
                 <header class="job__head">
-                    <h3 class="job__company">{{ job.company }}</h3>
+                    <h3 class="job__company">{% if job?.url %}<a class="text-link" href="{{ job.url }}" target="_blank" rel="noopener">{{ job.company }}</a>{% else %}{{ job.company }}{% endif %}</h3>
                     {% if job?.location %}<p class="job__where">{{ job.location }}</p>{% endif %}
                 </header>
                 <div class="job__roles">

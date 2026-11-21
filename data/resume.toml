@@ -1,6 +1,6 @@
 # Resume content — rendered on /resume/ and the homepage Experience timeline.
 # Source: "Brian Duenas – Resume 2026.pdf". Keep this and static/resume.pdf in sync.
-# Optional fields: jobs.location, roles.end (omit = Present).
+# Optional fields: jobs.location, jobs.url, roles.location, roles.end (omit = Present).
 
 summary = "Engineer with 7+ years of experience building cloud-native software, AI/ML infrastructure, and automation across hybrid cloud and large-scale device environments. At IBM, led client-facing initiatives for model training, inference, and fine-tuning on Kubernetes, and built LLM and MCP agent orchestration workflows. Strong in Python and TypeScript, infrastructure as code, and observability."
 
@@ -25,6 +25,20 @@ label = "Networking & Storage"
 value = "TCP/IP, HTTP, TLS, WebSockets; IBM Storage FlashSystem"
 
 # ---------------------------------------------------------------------------
+
+[[jobs]]
+company = "Gathrly"
+url = "https://gathrlyapp.com/"
+
+[[jobs.roles]]
+title = "Founder"
+start = "2025"
+start_year = 2025
+highlight = "Founded and launched a group scheduling app that finds the time that works for everyone. On iOS, Android and the web."
+bullets = [
+  "Founded Gathrly, an app that checks everyone's calendars and finds the time that actually works, so groups stop negotiating in the chat.",
+  "Took it from an idea I'd carried since 2018 to a public launch on iOS, Android and the web in 2025.",
+]
 
 [[jobs]]
 company = "IBM"

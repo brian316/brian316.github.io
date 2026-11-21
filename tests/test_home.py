@@ -16,7 +16,7 @@ def test_hero(site):
 
 def test_section_order(site):
     ids = [x.get("data-section") for x in html(site, "/").select("main [data-section]")]
-    assert ids == ["hero", "rail", "experience", "work", "oss", "writing"]
+    assert ids == ["hero", "rail", "experience", "founder", "work", "oss", "writing"]
 
 
 def test_rail_and_experience(site):
@@ -24,9 +24,8 @@ def test_rail_and_experience(site):
     assert len(s.select(".rail__cell")) == 3
     rows = s.select("[data-section=experience] article.row")
     exp = [r.select_one(".row__title").get_text(" ", strip=True) for r in rows]
-    assert exp[0].startswith("Quantum Applications Engineer") and len(exp) == 7
-    assert rows[0].select_one(".row__date").get_text(strip=True) == "Now"
-    assert rows[1].select_one(".row__date").get_text(strip=True) == "2024"
+    assert exp[0] == "Founder · Gathrly" and exp[1].startswith("Quantum Applications Engineer") and len(exp) == 8
+    assert [r.select_one(".row__date").get_text(strip=True) for r in rows[:3]] == ["Now", "Now", "2024"]
 
 
 def test_work_cards(site):
@@ -60,3 +59,21 @@ def test_share_preview_image_on_every_page(site):
     for u in ["/", "/resume/", "/blog/", "/notes/macos-sd-card-read-only/"]:
         meta = html(site, u).select_one('meta[property="og:image"]')
         assert meta and meta["content"] == "https://bduenas.com/images/profile.jpg", u
+
+
+def test_founder_section(site):
+    s = html(site, "/").select_one("[data-section=founder]")
+    assert s.get("id") == "gathrly"
+    text = s.get_text(" ", strip=True)
+    assert "Gathrly" in text and "2018" in text and "2025" in text
+    link = s.select_one('a[href="https://gathrlyapp.com/"]')
+    assert link and link.get("rel") == ["noopener"]
+    # kept non-technical on purpose
+    for word in ["Capacitor", "Kubernetes", "API", "TypeScript", "Swift"]:
+        assert word not in text, word
+    assert "\u2014" not in text
+
+
+def test_capacitor_pr_tagged_gathrly(site):
+    row = next(r for r in html(site, "/").select(".oss__row") if "capacitor-calendar" in r.get_text())
+    assert row.select_one(".oss__context").get_text(strip=True) == "While building Gathrly"

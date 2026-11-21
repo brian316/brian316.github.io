@@ -25,3 +25,12 @@ def test_no_private_contact_in_html(site):
     for f in site.rglob("*.html"):
         t = f.read_text()
         assert "909-894-8356" not in t and "9098948356" not in t and "yahoo" not in t.lower(), f
+
+
+def test_resume_lists_gathrly_first(site):
+    s = html(site, "/resume/")
+    job = s.select_one(".job")
+    assert job.select_one(".job__company").get_text(strip=True) == "Gathrly"
+    assert job.select_one('.job__company a[href="https://gathrlyapp.com/"]')
+    assert "Founder" in job.get_text() and "Present" in job.get_text()
+    assert "Capacitor" not in job.get_text()

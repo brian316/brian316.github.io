@@ -53,6 +53,28 @@
     </div>
 </section>
 
+<section id="gathrly" class="band" data-section="founder" aria-labelledby="founder-h">
+    <div class="container">
+        {{<ui.section_head label="Founder" />}}
+        <article class="founder">
+            <div class="founder__copy">
+                <p class="eyebrow eyebrow--accent">{{ w.founder.name }} · Idea {{ w.founder.idea_year }} · Launched {{ w.founder.launch_year }}</p>
+                <h2 id="founder-h" class="display-lg">{{ w.founder.headline }}<br> <em>{{ w.founder.headline_em }}</em></h2>
+                <p class="deck">{{ w.founder.body }}</p>
+                <div class="actions">
+                    <a class="btn" href="{{ w.founder.url }}" target="_blank" rel="noopener">Visit gathrlyapp.com <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+            <dl class="founder__facts">
+                <div><dt class="eyebrow">Role</dt><dd>Founder</dd></div>
+                <div><dt class="eyebrow">The idea</dt><dd>{{ w.founder.idea_year }}</dd></div>
+                <div><dt class="eyebrow">Launched</dt><dd>{{ w.founder.launch_year }}</dd></div>
+                <div><dt class="eyebrow">Available on</dt><dd>{{ w.founder.platforms | join(sep=" · ") }}</dd></div>
+            </dl>
+        </article>
+    </div>
+</section>
+
 <section id="work" class="band" data-section="work" aria-labelledby="work-h">
     <div class="container">
         {{<ui.section_head label="Selected work" />}}
@@ -82,7 +104,7 @@
             {% for o in w.oss %}
             <li class="oss__row">
                 <span class="oss__num" aria-hidden="true">{{ "0" ~ loop.index if loop.index < 10 else loop.index }}</span>
-                <span class="oss__repo">{{ o.repo }}</span>
+                <span class="oss__repo">{{ o.repo }}{% if o?.context %} <span class="oss__context">{{ o.context }}</span>{% endif %}</span>
                 <span class="oss__title"><a href="{{ o.url }}" target="_blank" rel="noopener">{{ o.title }}</a></span>
                 <span class="oss__meta">
                     <span class="status status--{{ o.status }}">{{ o.status }}</span>
