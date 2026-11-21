@@ -409,3 +409,32 @@
     li { position: relative; padding-left: 18px; }
     li::before { content: "—"; position: absolute; left: 0; color: var(--soft); }
 }
+
+// Homepage -------------------------------------------------------------
+.hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(60rem 30rem at 85% 10%, rgba($accent, 0.07), transparent 70%),
+        linear-gradient(180deg, #{$paper} 0%, #{$paper} 70%, #{$paper-2} 100%);
+}
+
+.hero__inner {
+    display: grid;
+    gap: 28px;
+    padding-top: 64px;
+    padding-bottom: 72px;
+
+    @media (min-width: $bp-sm) { padding-top: 112px; padding-bottom: 112px; }
+
+    .display-xl { max-width: 16ch; }
+    .hero__body { max-width: 56ch; }
+    > .eyebrow { margin-bottom: 8px; }
+}
+
+.section-title {
+    font: 400 1.6rem/1 $font-serif;
+    white-space: nowrap;
+}
+
+.oss__more { margin-top: 32px; }
