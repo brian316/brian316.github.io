@@ -483,7 +483,7 @@
     &:hover, &:focus-within { border-color: var(--ink); }
 
     @media (min-width: $bp-sm) { padding: 48px; }
-    @media (min-width: $bp-lg) { padding: 56px; }
+    @media (min-width: $bp-lg) { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: center; padding: 56px; }
 }
 
 .founder__copy {
@@ -494,52 +494,20 @@
     .actions { margin-top: 8px; }
 }
 
-// Idea → launch → now, as one horizontal timeline (stacks on phones).
-.founder__timeline {
-    display: grid;
-    gap: 0;
-    border-top: 1px solid var(--rule);
+.founder__facts {
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
 
-    @media (min-width: $bp-sm) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    li {
-        position: relative;
-        display: grid;
-        gap: 6px;
-        padding: 20px 0 0 20px;
-
-        // dot on the line
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: -4px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--paper);
-            border: 1px solid var(--soft);
-        }
-
-        &:last-child::before { background: var(--accent); border-color: var(--accent); }
-
-        @media (max-width: #{$bp-sm - 1px}) {
-            padding: 16px 0 16px 20px;
-            border-bottom: 1px solid var(--rule);
-            &::before { top: 22px; }
-        }
+    > div {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 0;
+        border-top: 1px solid var(--rule);
     }
-}
 
-.founder__when {
-    font: 500 0.7rem/1.4 $font-mono;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--soft);
-}
-
-.founder__what {
-    font: 400 1.3rem/1.2 $font-serif;
+    dd { margin: 0; font: 400 1.35rem/1.2 $font-serif; text-align: right; }
 }
 
 .oss__context {
