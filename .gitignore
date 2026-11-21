@@ -1,3 +1,5 @@
 /public
 .pytest_cache/
 __pycache__/
+.playwright-mcp/
+.superpowers/

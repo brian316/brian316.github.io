@@ -30,7 +30,7 @@
 {% if pages %}
 <div class="rows">
     {% for p in pages %}
-    {% set deck = p.description or (p.summary | striptags if p.summary else "") %}
+    {% set deck = p.description or (p.summary | striptags | safe if p.summary else "") %}
     {{<ui.row href={p.permalink} date={p.date | date(format="%b %-d, %Y")} datetime={p.date | date(format="%Y-%m-%d")} title={p.title} deck={deck} label={"NOTE" if p.components[0] == "notes" else "BLOG"} />}}
     {% endfor %}
 </div>
