@@ -1,0 +1,15 @@
+{% component ui.icon_links(extra, class: string = "") %}
+<ul class="icon-links {{ class }}">
+    <li><a class="icon-link" href="https://github.com/{{ extra.github }}" aria-label="GitHub profile" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a class="icon-link" href="https://linkedin.com/in/{{ extra.linkedin }}" aria-label="LinkedIn profile" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a class="icon-link" href="mailto:{{ extra.email }}" aria-label="Email {{ extra.email }}">Email</a></li>
+</ul>
+{% endcomponent ui.icon_links %}
+
+{% component ui.section_head(label: string, href: string = "", link_text: string = "", tag: string = "p", accent: bool = false) %}
+<div class="section-head">
+    <{{ tag }} class="eyebrow{% if accent %} eyebrow--accent{% endif %}">{{ label }}</{{ tag }}>
+    <span class="section-head__rule" aria-hidden="true"></span>
+    {% if href %}<a class="eyebrow section-head__link" href="{{ href }}">{{ link_text }} <span aria-hidden="true">→</span></a>{% endif %}
+</div>
+{% endcomponent ui.section_head %}

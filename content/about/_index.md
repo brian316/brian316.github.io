@@ -1,6 +1,6 @@
 +++
-title = "/About"
-weight = 0
+title = "About"
+weight = 3
 +++
 
 I am an avid tech enthusiast and love open source projects. Creating this blog mainly to share my own opinions and things I find intriguing.

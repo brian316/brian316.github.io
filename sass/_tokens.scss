@@ -1,0 +1,32 @@
+// Design tokens — distilled from littlemight.com (shared with the diagram-design skin)
+$paper: #f5f4ed;
+$paper-2: #efeee5;
+$ink: #0b0d0b;
+$muted: #52534e;
+$soft: #65655c;
+$rule: #0b0d0b1f;
+$rule-strong: #0b0d0b40;
+$accent: #f7591f;       // display-size + fills only (2.97:1 on paper)
+$accent-text: #c2410c;  // accent as small text (4.7:1)
+
+$font-serif: "Instrument Serif", "Times New Roman", serif;
+$font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$font-prose: "Lora", Georgia, "Times New Roman", serif;
+
+$container: 1240px;
+$ease: 150ms ease;
+
+$bp-sm: 640px;
+$bp-lg: 1024px;
+
+:root {
+    --paper: #{$paper};
+    --paper-2: #{$paper-2};
+    --ink: #{$ink};
+    --muted: #{$muted};
+    --soft: #{$soft};
+    --rule: #{$rule};
+    --accent: #{$accent};
+    --accent-text: #{$accent-text};
+}

@@ -8,18 +8,25 @@ compile_sass = true
 build_search_index = true
 
 title = "Brian Duenas | Software Engineer"
-description = "Personal blog"
-theme = "oceanic-zen"
+description = "Brian Duenas — software engineer building cloud, AI and distributed systems."
 
 [markdown]
 external_links_target_blank = true
 
 [markdown.highlighting]
-theme = "dark-plus"
+theme = "github-light"
+style = "class"
 
 [extra]
-# Put all your custom variables here
-author = "ßrian Duenas"
+author = "Brian Duenas"
+email = "hello@bduenas.com"
 github = "brian316"
 linkedin = "duenas-brian"
-# twitter = ""
+role = "Quantum Applications Engineer"
+employer = "IBM"
+
+# Homepage hero — rewrite freely
+hero_title = "I build the infrastructure"
+hero_title_em = "that ships models."
+hero_sub = "Cloud, AI & distributed systems."
+hero_body = "7+ years building cloud-native software and ML infrastructure on Kubernetes — training, inference and fine-tuning pipelines, LLM and MCP agent workflows — mostly in Python and TypeScript."

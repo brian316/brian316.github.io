@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+    <meta name="theme-color" content="#f5f4ed">
+    <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
+    <meta property="og:description" content="{{ config.description }}">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+    <link rel="stylesheet" href="{{ get_url(path='theme.css') }}">
+    <link rel="stylesheet" href="{{ get_url(path='giallo.css') }}">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="wordmark" href="{{ get_url(path='/') }}">{{ config.extra.author }}</a>
+            <div class="site-header__right">
+                <nav aria-label="Primary">
+                    <ul class="nav">
+                        <li><a class="nav__link" href="{{ get_url(path='/') }}#work">Work</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='blog/') }}">Writing</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='resume/') }}">Resume</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='about/') }}">About</a></li>
+                    </ul>
+                </nav>
+                {{<ui.icon_links extra={config.extra} class="site-header__icons" />}}
+            </div>
+        </div>
+    </header>
+    <main id="main" tabindex="-1">
+        {% block main %}{% endblock main %}
+    </main>
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <small>&copy; {{ now() | date(format="%Y") }} {{ config.extra.author }}</small>
+            {{<ui.icon_links extra={config.extra} class="site-footer__icons" />}}
+        </div>
+    </footer>
+</body>
+</html>
