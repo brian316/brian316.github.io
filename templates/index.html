@@ -58,19 +58,18 @@
         {{<ui.section_head label="Founder" />}}
         <article class="founder">
             <div class="founder__copy">
-                <p class="eyebrow eyebrow--accent">{{ w.founder.name }} · Idea {{ w.founder.idea_year }} · Launched {{ w.founder.launch_year }}</p>
+                <p class="eyebrow eyebrow--accent">{{ w.founder.name }} · Founder</p>
                 <h2 id="founder-h" class="display-lg">{{ w.founder.headline }}<br> <em>{{ w.founder.headline_em }}</em></h2>
                 <p class="deck">{{ w.founder.body }}</p>
                 <div class="actions">
                     <a class="btn" href="{{ w.founder.url }}" target="_blank" rel="noopener">Visit gathrlyapp.com <span aria-hidden="true">→</span></a>
                 </div>
             </div>
-            <dl class="founder__facts">
-                <div><dt class="eyebrow">Role</dt><dd>Founder</dd></div>
-                <div><dt class="eyebrow">The idea</dt><dd>{{ w.founder.idea_year }}</dd></div>
-                <div><dt class="eyebrow">Launched</dt><dd>{{ w.founder.launch_year }}</dd></div>
-                <div><dt class="eyebrow">Available on</dt><dd>{{ w.founder.platforms | join(sep=" · ") }}</dd></div>
-            </dl>
+            <ol class="founder__timeline" aria-label="Gathrly timeline">
+                <li><span class="founder__when">{{ w.founder.idea_year }}</span><span class="founder__what">The idea</span></li>
+                <li><span class="founder__when">{{ w.founder.launch_year }}</span><span class="founder__what">Launched</span></li>
+                <li><span class="founder__when">Now</span><span class="founder__what">{{ w.founder.platforms | join(sep=" · ") }}</span></li>
+            </ol>
         </article>
     </div>
 </section>

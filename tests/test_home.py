@@ -72,6 +72,12 @@ def test_founder_section(site):
     for word in ["Capacitor", "Kubernetes", "API", "TypeScript", "Swift"]:
         assert word not in text, word
     assert "\u2014" not in text
+    # one compact timeline replaces the label/value list; no repeated years
+    assert not s.select_one(".founder__facts")
+    steps = s.select(".founder__timeline li")
+    assert [st.select_one(".founder__when").get_text(strip=True) for st in steps] == ["2018", "2025", "Now"]
+    assert [st.select_one(".founder__what").get_text(strip=True) for st in steps] == ["The idea", "Launched", "iOS · Android · Web"]
+    assert text.count("2018") == 1 and text.count("2025") == 1
 
 
 def test_capacitor_pr_tagged_gathrly(site):
