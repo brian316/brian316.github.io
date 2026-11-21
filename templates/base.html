@@ -6,6 +6,9 @@
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
     <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
     <meta name="theme-color" content="#f5f4ed">
+    <link rel="icon" href="{{ get_url(path='favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/png" href="{{ get_url(path='favicon-32.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ get_url(path='apple-touch-icon.png') }}">
     <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
     <meta property="og:description" content="{{ config.description }}">
     <meta property="og:type" content="website">

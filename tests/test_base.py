@@ -52,3 +52,14 @@ def test_internal_section_links_keep_trailing_slash(site):
     for h in hrefs:
         if h.startswith("https://bduenas.com/") and "." not in h.rsplit("/", 1)[-1] and "#" not in h:
             assert h.endswith("/"), h
+
+
+def test_favicon_from_initials(site):
+    head = html(site, "/").select_one("head")
+    assert head.select_one('link[rel="icon"][href$="/favicon.ico"]')
+    assert head.select_one('link[rel="icon"][type="image/png"][href$="/favicon-32.png"]')
+    assert head.select_one('link[rel="apple-touch-icon"][href$="/apple-touch-icon.png"]')
+    ico = (site / "favicon.ico").read_bytes()
+    assert ico[:4] == b"\x00\x00\x01\x00" and int.from_bytes(ico[4:6], "little") >= 3  # 16/32/48
+    for name in ["favicon-32.png", "apple-touch-icon.png"]:
+        assert (site / name).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n", name
