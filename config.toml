@@ -29,7 +29,7 @@ role = "Quantum Applications Engineer"
 employer = "IBM"
 
 # Homepage hero — rewrite freely
-hero_title = "I build the infrastructure"
-hero_title_em = "that ships models."
+hero_title = "I build the tools"
+hero_title_em = "teams actually use."
 hero_sub = "Cloud, AI & distributed systems."
-hero_body = "7+ years building cloud-native software and ML infrastructure on Kubernetes — training, inference and fine-tuning pipelines, LLM and MCP agent workflows — mostly in Python and TypeScript."
+hero_body = "7+ years building cloud-native software and internal tools that make teams faster, most recently ML infrastructure on Kubernetes, LLM and MCP agent workflows, and quantum tooling at IBM. Mostly Python and TypeScript."

@@ -4,8 +4,10 @@ from conftest import html
 def test_hero(site):
     s = html(site, "/")
     h1 = s.select_one("h1.display-xl")
-    assert "I build the infrastructure" in h1.get_text()
-    assert h1.select_one("em").get_text(strip=True) == "that ships models."
+    assert "I build the tools" in h1.get_text()
+    assert h1.select_one("em").get_text(strip=True) == "teams actually use."
+    body = s.select_one(".hero__body").get_text()
+    assert "7+ years" in body and "—" not in body
     assert s.select_one(".hero .eyebrow").get_text(" ", strip=True).upper().startswith("BRIAN DUENAS")
     cta = s.select_one(".hero a.btn")
     assert cta["href"].endswith("/resume/") and "Resume" in cta.get_text()
