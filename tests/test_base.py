@@ -68,3 +68,8 @@ def test_favicon_from_initials(site):
 def test_no_em_dashes_in_rendered_pages(site):
     for u in ["/", "/resume/", "/blog/", "/about/"]:
         assert "\u2014" not in (site / u.strip("/") / "index.html" if u != "/" else site / "index.html").read_text(), u
+
+
+def test_no_theme_submodule():
+    assert not (ROOT / "themes").exists()
+    assert not (ROOT / ".gitmodules").exists()

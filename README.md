@@ -6,4 +6,6 @@ All tools used are for public use of course.
 
 Built with [Zola](https://www.getzola.org/)
 
-Theme Used: [oceanic-zen](https://github.com/barlog-m/oceanic-zen)
+Custom templates and Sass (no theme). Design notes: `docs/superpowers/specs/`.
+
+Run tests: `uv run --with pytest --with beautifulsoup4 pytest tests -q`
