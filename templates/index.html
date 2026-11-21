@@ -24,7 +24,7 @@
         <img class="hero__portrait"
              src="{{ get_url(path='images/profile.jpg') }}"
              srcset="{{ get_url(path='images/profile-480.jpg') }} 480w, {{ get_url(path='images/profile.jpg') }} 800w"
-             sizes="(min-width: 1024px) 280px, (min-width: 640px) 200px, 160px"
+             sizes="(min-width: 640px) clamp(160px, 22vw, 280px), 160px"
              width="800" height="800" alt="Illustrated portrait of Brian Duenas" fetchpriority="high">
     </div>
 </section>

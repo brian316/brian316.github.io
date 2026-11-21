@@ -33,3 +33,15 @@ def test_classes_defined(css):
 
 def test_code_blocks_override_giallo_white(css):
     assert ".z-code" in css
+
+
+def test_hero_portrait_beside_text_from_640px(css):
+    # Two-column hero must start at the small breakpoint, not only on desktop.
+    flat = re.sub(r"\s+", "", css)
+    m = re.search(r"@media\(min-width:640px\)\{\.hero__inner\{[^}]*grid-template-columns", flat)
+    assert m, "hero two-column layout not enabled at 640px"
+
+
+def test_hero_short_viewport_padding(css):
+    flat = re.sub(r"\s+", "", css)
+    assert re.search(r"@media\(min-width:640px\)and\(max-height:500px\)\{\.hero__inner\{padding-top:40px", flat)

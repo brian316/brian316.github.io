@@ -425,13 +425,18 @@
     padding-top: 64px;
     padding-bottom: 72px;
 
-    @media (min-width: $bp-sm) { padding-top: 112px; padding-bottom: 112px; }
-
-    @media (min-width: $bp-lg) {
-        grid-template-columns: minmax(0, 1fr) 280px;
-        align-items: center;
-        gap: 64px;
+    @media (min-width: $bp-sm) {
+        padding-top: 112px;
+        padding-bottom: 112px;
+        grid-template-columns: minmax(0, 1fr) clamp(160px, 22vw, 280px);
+        align-items: start;  // portrait lines up with the top of the copy, so it's on the first screen
+        gap: 32px;
     }
+
+    @media (min-width: $bp-lg) { align-items: center; gap: 64px; }
+
+    // Landscape phones: less top padding so the headline and portrait fit the first screen.
+    @media (min-width: $bp-sm) and (max-height: 500px) { padding-top: 40px; padding-bottom: 56px; }
 
     .display-xl { max-width: 16ch; }
     .hero__body { max-width: 56ch; }
@@ -453,8 +458,7 @@
     border: 1px solid var(--rule);
     border-radius: 8px;
 
-    @media (min-width: $bp-sm) { width: 200px; }
-    @media (min-width: $bp-lg) { order: 0; width: 100%; justify-self: end; }
+    @media (min-width: $bp-sm) { order: 0; width: 100%; justify-self: end; }
 }
 
 .section-title {
