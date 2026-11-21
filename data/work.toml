@@ -1,0 +1,89 @@
+# Homepage "Selected work", open-source band, and metadata rail.
+# Optional fields: oss.stars.
+
+[[stats]]
+label = "Building since"
+value = "2019"
+note = "CSUSB research → IBM."
+
+[[stats]]
+label = "At IBM since"
+value = "2021"
+note = "Cloud → Research → Quantum."
+
+[[stats]]
+label = "Open source"
+value = "~90 PRs"
+note = "Across 15+ repositories."
+
+# ---------------------------------------------------------------------------
+
+[[projects]]
+org = "IBM Accelerated Discovery"
+name = "finetune-controller"
+url = "https://github.com/acceleratedscience/finetune-controller"
+description = "Job-scheduling API for fine-tuning ML models on clusters. Built auth (cookie, JWT, model auth), log streaming, Slack integration, dataset handling and CI with uv."
+tags = ["Python", "Kubernetes", "API"]
+
+[[projects]]
+org = "IBM Accelerated Discovery"
+name = "openad_service_utils"
+url = "https://github.com/acceleratedscience/openad_service_utils"
+description = "Library that wraps any ML model as an API service for the OpenAD Toolkit. Multiprocessing, async queues and caching, S3 sync, and a docs revamp."
+tags = ["Python", "Async", "S3"]
+
+[[projects]]
+org = "IBM Accelerated Discovery"
+name = "openad-model-helm-template"
+url = "https://github.com/acceleratedscience/openad-model-helm-template"
+description = "Helm and OpenShift deployment template for model services, with an installer, build triggers and PVC protection."
+tags = ["Helm", "OpenShift"]
+
+# ---------------------------------------------------------------------------
+
+[[oss]]
+repo = "rwarner/ha-quietcool-ble"
+url = "https://github.com/rwarner/ha-quietcool-ble/pull/13"
+title = "Close the D-Bus bus on device-initiated BLE disconnect to stop a connection leak"
+status = "merged"
+year = 2026
+stars = "18"
+
+[[oss]]
+repo = "ebarooni/capacitor-calendar"
+url = "https://github.com/ebarooni/capacitor-calendar/pull/229"
+title = "Return the event ID from createEventWithPrompt on Android"
+status = "open"
+year = 2026
+stars = "89"
+
+[[oss]]
+repo = "docker/cli"
+url = "https://github.com/docker/cli/pull/6046"
+title = "Parse quotes in --env-file values (fixes #3630)"
+status = "open"
+year = 2025
+stars = "6.1k"
+
+[[oss]]
+repo = "acceleratedscience/openad-toolkit"
+url = "https://github.com/acceleratedscience/openad-toolkit/pulls?q=is%3Apr+author%3Abrian316"
+title = "Model service API and LLM integration"
+status = "merged"
+year = 2024
+stars = "16"
+
+[[oss]]
+repo = "breuerfelix/chromedriver-py"
+url = "https://github.com/breuerfelix/chromedriver-py/pull/12"
+title = "Check all Windows versions when resolving chromedriver"
+status = "merged"
+year = 2021
+stars = "56"
+
+[[oss]]
+repo = "thenewboston-blockchain/Account-Manager"
+url = "https://github.com/thenewboston-blockchain/Account-Manager/pulls?q=is%3Apr+author%3Abrian316"
+title = "Clearer error messages and a context-menu fix"
+status = "merged"
+year = 2020

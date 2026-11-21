@@ -339,3 +339,73 @@
 }
 
 .band--dark :focus-visible { outline-color: var(--paper); }
+
+// Resume ---------------------------------------------------------------
+.resume-head {
+    display: grid;
+    gap: 24px;
+    padding-top: 72px;
+    padding-bottom: 72px;
+
+    @media (min-width: $bp-sm) { padding-top: 104px; padding-bottom: 104px; }
+
+    .deck { max-width: 62ch; }
+}
+
+.skills { margin: 0; border-bottom: 1px solid var(--rule); }
+
+.skills__row {
+    display: grid;
+    gap: 6px 32px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+
+    @media (min-width: $bp-lg) { grid-template-columns: 14rem minmax(0, 1fr); align-items: baseline; }
+
+    dd { margin: 0; color: var(--ink); }
+}
+
+.jobs { display: grid; gap: 56px; }
+
+.job {
+    display: grid;
+    gap: 20px 32px;
+
+    @media (min-width: $bp-lg) { grid-template-columns: 14rem minmax(0, 1fr); }
+}
+
+.job__company { font: 400 1.65rem/1.1 $font-serif; letter-spacing: -0.01em; }
+.job__where { margin-top: 6px; font-size: 0.9rem; color: var(--muted); }
+
+.job__roles { display: grid; gap: 28px; }
+
+.role { padding-top: 20px; border-top: 1px solid var(--rule); }
+.role:first-child { padding-top: 0; border-top: 0; }
+
+.role__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 24px;
+}
+
+.role__title { font: 600 1.05rem/1.35 $font-sans; }
+
+.role__dates {
+    font: 500 0.7rem/1.4 $font-mono;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--soft);
+}
+
+.role__bullets {
+    margin-top: 12px;
+    display: grid;
+    gap: 8px;
+    max-width: 72ch;
+    color: var(--muted);
+
+    li { position: relative; padding-left: 18px; }
+    li::before { content: "—"; position: absolute; left: 0; color: var(--soft); }
+}

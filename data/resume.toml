@@ -1,0 +1,124 @@
+# Resume content — rendered on /resume/ and the homepage Experience timeline.
+# Source: "Brian Duenas – Resume 2026.pdf". Keep this and static/resume.pdf in sync.
+# Optional fields: jobs.location, roles.end (omit = Present).
+
+summary = "Engineer with 7+ years of experience building cloud-native software, AI/ML infrastructure, and automation across hybrid cloud and large-scale device environments. At IBM, led client-facing initiatives for model training, inference, and fine-tuning on Kubernetes, and built LLM and MCP agent orchestration workflows. Strong in Python and TypeScript, infrastructure as code, and observability."
+
+[[skills]]
+label = "Languages"
+value = "Python, TypeScript, JavaScript; learning Go and Rust"
+
+[[skills]]
+label = "AI & Emerging Tech"
+value = "ML training, inference and fine-tuning pipelines; LLM and MCP agent orchestration; quantum computing"
+
+[[skills]]
+label = "Infrastructure"
+value = "Kubernetes, OpenShift, Docker, Helm, ArgoCD, Terraform, Ansible"
+
+[[skills]]
+label = "Cloud & Development"
+value = "AWS (S3, EC2, ECS), GCP, Linux, Git, Flask, React, Next.js, REST"
+
+[[skills]]
+label = "Networking & Storage"
+value = "TCP/IP, HTTP, TLS, WebSockets; IBM Storage FlashSystem"
+
+# ---------------------------------------------------------------------------
+
+[[jobs]]
+company = "IBM"
+
+[[jobs.roles]]
+title = "Quantum Applications Engineer"
+start = "July 2026"
+start_year = 2026
+highlight = "Building software and tooling that helps researchers turn complex ideas into practical quantum applications."
+bullets = [
+  "Build scalable software and tooling that helps researchers turn complex ideas into practical quantum applications.",
+]
+
+[[jobs.roles]]
+title = "Research Software Engineer"
+start = "February 2024"
+end = "July 2026"
+start_year = 2024
+highlight = "Led cloud initiatives building AI infrastructure for model training, inference, and fine-tuning on Kubernetes."
+bullets = [
+  "Led cloud initiatives building AI infrastructure for model training, inference, and fine-tuning on Kubernetes.",
+  "Architected end-to-end ML pipelines with Terraform, Helm, and ArgoCD, emphasizing auto-remediation and reproducibility.",
+  "Developed LLM and MCP agent orchestration workflows.",
+]
+
+[[jobs.roles]]
+title = "Partner Technical Specialist"
+start = "August 2023"
+end = "February 2024"
+start_year = 2023
+highlight = "Technical expertise for partners and clients on Cyber Resilience and IBM Storage FlashSystem."
+bullets = [
+  "Provided technical expertise to partners and clients on Cyber Resilience solutions and IBM Storage FlashSystem (NVMe flash systems).",
+]
+
+[[jobs.roles]]
+title = "Cloud Engineer"
+start = "May 2021"
+end = "February 2024"
+start_year = 2021
+location = "Costa Mesa, CA"
+highlight = "Shipped MVPs at enterprise scale: Kubernetes backends, Flask APIs, Next.js frontends, Terraform/Ansible/ArgoCD pipelines."
+bullets = [
+  "Delivered MVPs with startup agility at enterprise scale; maintained backend Kubernetes infrastructure and automated deployment pipelines with Terraform, Ansible, Helm, and ArgoCD.",
+  "Built backend APIs (Python/Flask) and TypeScript/Next.js frontends to orchestrate hybrid workloads and manage configuration.",
+  "Integrated Prometheus telemetry into orchestration systems for fine-grained observability.",
+]
+
+[[jobs]]
+company = "Life Elixir LLC"
+location = "Irvine, CA"
+
+[[jobs.roles]]
+title = "Python Developer"
+start = "October 2020"
+end = "May 2021"
+start_year = 2020
+highlight = "Resilient ML services on Docker, Flask and AWS for real-time predictive modeling."
+bullets = [
+  "Designed resilient ML services with Docker, Flask, and AWS (S3, EC2, ECS) for real-time predictive modeling, with health checks, monitoring, and failover logic.",
+]
+
+[[jobs]]
+company = "Panasonic Avionics Corporation"
+location = "Lake Forest, CA"
+
+[[jobs.roles]]
+title = "Software Engineer & Systems Engineer"
+start = "January 2020"
+end = "May 2021"
+start_year = 2020
+highlight = "Remote device-testing UI for network engineers during COVID-19; automated avionics software testing."
+bullets = [
+  "Built a remote orchestration UI (Python asyncio, Flask, Docker, React) so network engineers could test devices from anywhere during COVID-19.",
+  "Automated avionics software testing with Selenium, Gauge, and Python, reducing time-to-validation.",
+  "Managed a Linux test lab of hundreds to thousands of devices and debugged TCP/IP and high-availability network systems.",
+]
+
+[[jobs]]
+company = "California State University, San Bernardino"
+
+[[jobs.roles]]
+title = "Software Engineer, Research Assistant"
+start = "January 2019"
+end = "September 2019"
+start_year = 2019
+highlight = "IoT parking monitor with real-time dashboards for campus traffic flow."
+bullets = [
+  "Built and deployed an IoT parking monitor (Python, Flask, TCP/IP sensors, BigQuery, App Engine) with real-time dashboards for campus traffic flow.",
+]
+
+# ---------------------------------------------------------------------------
+
+[[education]]
+school = "California State University, San Bernardino"
+degree = "B.S., Computer Engineering"
+years = "2014 – 2019"

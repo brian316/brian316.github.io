@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Resume · {{ config.extra.author }}{% endblock title %}
+{% block og_title %}Resume · {{ config.extra.author }}{% endblock og_title %}
+
+{% block main %}
+{% set r = load_data(path="data/resume.toml") %}
+<section class="container resume-head">
+    <p class="eyebrow">{{ config.extra.role }} · {{ config.extra.employer }}</p>
+    <h1 class="display-lg">{{ config.extra.author }}</h1>
+    <p class="deck">{{ r.summary }}</p>
+    <div class="actions">
+        <a class="btn" href="{{ get_url(path='resume.pdf') }}" download>Download PDF</a>
+        {{<ui.icon_links extra={config.extra} />}}
+    </div>
+</section>
+
+<section class="band" aria-labelledby="skills-h">
+    <div class="container">
+        {{<ui.section_head label="Skills" />}}
+        <h2 id="skills-h" class="visually-hidden">Skills</h2>
+        <dl class="skills">
+            {% for s in r.skills %}
+            <div class="skills__row">
+                <dt class="eyebrow">{{ s.label }}</dt>
+                <dd>{{ s.value }}</dd>
+            </div>
+            {% endfor %}
+        </dl>
+    </div>
+</section>
+
+<section class="band" aria-labelledby="exp-h">
+    <div class="container">
+        {{<ui.section_head label="Experience" />}}
+        <h2 id="exp-h" class="visually-hidden">Experience</h2>
+        <div class="jobs">
+            {% for job in r.jobs %}
+            <article class="job">
+                <header class="job__head">
+                    <h3 class="job__company">{{ job.company }}</h3>
+                    {% if job?.location %}<p class="job__where">{{ job.location }}</p>{% endif %}
+                </header>
+                <div class="job__roles">
+                    {% for role in job.roles %}
+                    <div class="role">
+                        <div class="role__head">
+                            <h4 class="role__title">{{ role.title }}</h4>
+                            <p class="role__dates">{{ role.start }} – {{ role?.end or "Present" }}{% if role?.location %} · {{ role.location }}{% endif %}</p>
+                        </div>
+                        <ul class="role__bullets">
+                            {% for b in role.bullets %}<li>{{ b }}</li>{% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="band" aria-labelledby="edu-h">
+    <div class="container">
+        {{<ui.section_head label="Education" />}}
+        <h2 id="edu-h" class="visually-hidden">Education</h2>
+        {% for e in r.education %}
+        <div class="job">
+            <header class="job__head">
+                <h3 class="job__company">{{ e.school }}</h3>
+            </header>
+            <div class="role__head">
+                <p class="role__title">{{ e.degree }}</p>
+                <p class="role__dates">{{ e.years }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock main %}
