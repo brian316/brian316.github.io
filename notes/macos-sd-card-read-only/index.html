@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>macOS SD Card Read Only Issues · Brian Duenas</title>
+    <meta name="description" content="Brian Duenas is a software engineer who builds internal tools, cloud platforms and AI systems.">
+    <meta name="theme-color" content="#f5f4ed">
+    <link rel="icon" href="https://bduenas.com/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="https://bduenas.com/favicon-32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="https://bduenas.com/apple-touch-icon.png">
+    <meta property="og:title" content="macOS SD Card Read Only Issues">
+    <meta property="og:description" content="Brian Duenas is a software engineer who builds internal tools, cloud platforms and AI systems.">
+    
+    <link rel="canonical" href="https://bduenas.com/notes/macos-sd-card-read-only/">
+    <meta property="og:url" content="https://bduenas.com/notes/macos-sd-card-read-only/">
+    
+    <meta property="og:site_name" content="Brian Duenas">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://bduenas.com/images/profile.jpg">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+    <link rel="stylesheet" href="https://bduenas.com/theme.css">
+    <link rel="stylesheet" href="https://bduenas.com/giallo.css">
+    
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="wordmark" href="https://bduenas.com/">Brian Duenas</a>
+            <div class="site-header__right">
+                <nav aria-label="Primary">
+                    <ul class="nav">
+                        <li><a class="nav__link" href="https://bduenas.com/#work">Work</a></li>
+                        <li><a class="nav__link" href="https://bduenas.com/blog/">Writing</a></li>
+                        <li><a class="nav__link" href="https://bduenas.com/resume/">Resume</a></li>
+                        <li><a class="nav__link" href="https://bduenas.com/about/">About</a></li>
+                    </ul>
+                </nav>
+                
+<ul class="icon-links site-header__icons">
+    <li><a class="icon-link" href="https://github.com/brian316" aria-label="GitHub profile" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a class="icon-link" href="https://www.linkedin.com/in/duenas-brian" aria-label="LinkedIn profile" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a class="icon-link" href="mailto:hello@bduenas.com" aria-label="Email hello@bduenas.com">Email</a></li>
+</ul>
+
+            </div>
+        </div>
+    </header>
+    <main id="main" tabindex="-1">
+        
+<article class="container post">
+    <header class="page-head">
+        <p class="eyebrow">Note · <time datetime="2025-05-05">May 5, 2025</time></p>
+        <h1 class="display-lg">macOS SD Card Read Only Issues</h1>
+        
+    </header>
+    <div class="prose">
+        <p><a href="https://bduenas.com/notes/macos-sd-card-read-only/#solution">tl;dr</a></p>
+<h2 id="problem">Problem</h2>
+<p>I bought a cheap amazon basics micro sd card and inserted it with the adapter into my macbook M1. Thinking things would go smoothly (somehow they never do) I only had read access to the card. I tried everything from disk utilities First Aid, formatting to exFAT and MS-DOS (FAT), and dangerously typing commands from the interwebs into my terminal... cough, of course I have common sense enough to know what they are doing. Nothing worked. It was simply stuck on readonly mode. I had given up hope and started my amazon return thinking I had a defective device maybe even a fake sd card, but then I used a known working sd card and same issue! I had to dig deeper to find my solution.</p>
+<h2 id="system-check">System Check</h2>
+<p>Insert your sd card and check the volume info</p>
+<pre class="giallo z-code" ><code data-lang="shellscript"><span class="giallo-l"><span class="z-6">diskutil</span><span class="z-2"> info /Volumes/YOUR_CARD_NAME</span></span></code></pre>
+<p>look for this line. If present you have the issue!</p>
+<pre class="giallo z-code" ><code data-lang="shellscript"><span class="giallo-l"><span class="z-6">Volume</span><span class="z-2"> Read-Only:          Yes</span><span> (read-only</span><span class="z-2"> mount flag set</span><span>)</span></span></code></pre><!-- [script](/scripts/sdcard_fix.sh?view=true) -->
+<p>Use macbooks <code>Disk Utility</code> to erase/format your sd card to the desired format and take note of that format. For me I needed to use <code>msdos</code> format so it can be read my 3d printer find (Creality Ender-3 v2 Neo).</p>
+<h2 id="solution">Solution</h2>
+<p>Now for the hack! We are going to manually mount the disk as a read/write volume.</p>
+<pre class="giallo z-code" ><code data-lang="shellscript"><span class="giallo-l"><span class="z-5"># get volume device name</span></span>
+<span class="giallo-l"><span class="z-6">diskutil</span><span class="z-2"> info /Volumes/SDCARD</span><span class="z-8"> |</span><span class="z-6">grep</span><span class="z-2"> /dev</span></span></code></pre>
+<p>if using <code>exfat</code> then replace <code>msdos</code> with <code>exfat</code></p>
+<pre class="giallo z-code" ><code data-lang="shellscript"><span class="giallo-l"><span class="z-6">sudo</span><span class="z-2"> umount /Volumes/SDCARD</span></span>
+<span class="giallo-l"><span class="z-6">sudo</span><span class="z-2"> mkdir</span><span class="z-1"> -p</span><span class="z-2"> /Volumes/SDCARD</span></span>
+<span class="giallo-l"><span class="z-6">sudo</span><span class="z-2"> mount</span><span class="z-1"> -t</span><span class="z-2"> msdos</span><span class="z-1"> -o</span><span class="z-2"> rw /dev/disk6s1 /Volumes/SDCARD</span></span></code></pre><h2 id="conclusion">Conclusion</h2>
+<p>Like I said this is a hack so everytime you insert your sdcard you'll have to run the set of commands. Not ideal, but we are programmers or maybe just script kiddies so just create a script to run whenever you need it. Hopefully I figure out the issue in the future and I update this soon.</p>
+<p>~ Maybe it's my machine!</p>
+
+    </div>
+    <footer class="post__foot">
+        <a class="text-link back-link" href="https://bduenas.com/blog/"><span aria-hidden="true">←</span> Back to writing</a>
+    </footer>
+</article>
+
+    </main>
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <small>&copy; 2026 Brian Duenas</small>
+            
+<ul class="icon-links site-footer__icons">
+    <li><a class="icon-link" href="https://github.com/brian316" aria-label="GitHub profile" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a class="icon-link" href="https://www.linkedin.com/in/duenas-brian" aria-label="LinkedIn profile" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a class="icon-link" href="mailto:hello@bduenas.com" aria-label="Email hello@bduenas.com">Email</a></li>
+</ul>
+
+        </div>
+    </footer>
+</body>
+</html>
