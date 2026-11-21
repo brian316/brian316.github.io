@@ -11,6 +11,7 @@
 
 <section class="hero" data-section="hero" aria-labelledby="hero-h">
     <div class="container hero__inner">
+        <div class="hero__copy">
         <p class="eyebrow">{{ config.extra.author }} · {{ config.extra.role }} · {{ config.extra.employer }}</p>
         <h1 id="hero-h" class="display-xl">{{ config.extra.hero_title }}<br> <em>{{ config.extra.hero_title_em }}</em></h1>
         <p class="serif-sub">{{ config.extra.hero_sub }}</p>
@@ -19,6 +20,12 @@
             <a class="btn" href="{{ resume_url }}">Resume <span aria-hidden="true">→</span></a>
             {{<ui.icon_links extra={config.extra} />}}
         </div>
+        </div>
+        <img class="hero__portrait"
+             src="{{ get_url(path='images/profile.jpg') }}"
+             srcset="{{ get_url(path='images/profile-480.jpg') }} 480w, {{ get_url(path='images/profile.jpg') }} 800w"
+             sizes="(min-width: 1024px) 420px, (min-width: 640px) 320px, 240px"
+             width="800" height="800" alt="Illustrated portrait of Brian Duenas" fetchpriority="high">
     </div>
 </section>
 

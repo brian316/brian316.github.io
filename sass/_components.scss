@@ -421,15 +421,40 @@
 
 .hero__inner {
     display: grid;
-    gap: 28px;
+    gap: 40px;
     padding-top: 64px;
     padding-bottom: 72px;
 
     @media (min-width: $bp-sm) { padding-top: 112px; padding-bottom: 112px; }
 
+    @media (min-width: $bp-lg) {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+        align-items: center;
+        gap: 64px;
+    }
+
     .display-xl { max-width: 16ch; }
     .hero__body { max-width: 56ch; }
+}
+
+.hero__copy {
+    display: grid;
+    gap: 28px;
+
     > .eyebrow { margin-bottom: 8px; }
+}
+
+// Painted portrait: cream ground blends into paper; hairline + 8px radius, no shadow.
+.hero__portrait {
+    order: -1;
+    width: 240px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+
+    @media (min-width: $bp-sm) { width: 320px; }
+    @media (min-width: $bp-lg) { order: 0; width: 100%; justify-self: end; }
 }
 
 .section-title {

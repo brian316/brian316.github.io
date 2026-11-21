@@ -44,3 +44,17 @@ def test_oss_band(site):
 def test_recent_writing(site):
     s = html(site, "/").select_one("#writing")
     assert len(s.select("article.row")) == 2 and s.select_one('a[href$="/blog/"]')
+
+
+def test_hero_portrait(site):
+    img = html(site, "/").select_one(".hero img.hero__portrait")
+    assert img and "Brian Duenas" in img["alt"]
+    assert img["width"] == "800" and img["height"] == "800"  # reserves space, no layout shift
+    assert "profile-480.jpg 480w" in img["srcset"] and "profile.jpg 800w" in img["srcset"]
+    assert (site / "images/profile.jpg").exists() and (site / "images/profile-480.jpg").exists()
+
+
+def test_share_preview_image_on_every_page(site):
+    for u in ["/", "/resume/", "/blog/", "/notes/macos-sd-card-read-only/"]:
+        meta = html(site, u).select_one('meta[property="og:image"]')
+        assert meta and meta["content"] == "https://bduenas.com/images/profile.jpg", u
