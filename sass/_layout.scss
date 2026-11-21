@@ -1,0 +1,117 @@
+.container {
+    width: 100%;
+    max-width: $container;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @media (min-width: $bp-sm) { padding: 0 32px; }
+}
+
+.band {
+    border-top: 1px solid var(--rule);
+    padding: 72px 0;
+
+    @media (min-width: $bp-sm) { padding: 104px 0; }
+
+    &--tight { padding: 32px 0; }
+}
+
+.band--dark {
+    border-top: 0;
+    background: linear-gradient(180deg, #{$ink} 0%, #161916 100%);
+    color: var(--paper);
+}
+
+// Header ---------------------------------------------------------------
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba($paper, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+}
+
+.site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    @media (min-width: $bp-sm) { padding-top: 20px; padding-bottom: 20px; }
+}
+
+.wordmark {
+    font: 400 1.75rem/1 $font-serif;
+    letter-spacing: -0.015em;
+
+    &:hover { color: var(--accent-text); }
+}
+
+.site-header__right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 28px;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+
+    @media (min-width: $bp-sm) { gap: 4px 32px; }
+}
+
+.nav__link,
+.icon-link {
+    display: inline-block;
+    padding: 4px 0;
+    font: 500 0.75rem/1.2 $font-mono;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+
+    &:hover { color: var(--accent-text); }
+}
+
+.icon-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+
+    .icon-link { color: var(--soft); }
+    .icon-link:hover { color: var(--accent-text); }
+}
+
+.site-header__icons {
+    @media (max-width: #{$bp-sm - 1px}) { display: none; }
+}
+
+// Footer ---------------------------------------------------------------
+.site-footer {
+    border-top: 1px solid var(--rule);
+    color: var(--soft);
+}
+
+.site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+
+    small { font: 500 0.72rem/1.4 $font-mono; letter-spacing: 0.14em; text-transform: uppercase; }
+}
+
+.notfound {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    display: grid;
+    gap: 20px;
+}
