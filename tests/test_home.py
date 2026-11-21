@@ -37,6 +37,10 @@ def test_oss_band(site):
     s = html(site, "/").select_one("[data-section=oss]")
     assert s.select_one("h2").get_text(" ", strip=True) == "Small fixes, out in the open."
     assert s.select_one("h2 em").get_text(strip=True) == "out in the open."
+    assert s.select_one(".deck").get_text(" ", strip=True) == (
+        "Most of what I build stands on open source. When I hit a bug or a missing piece, "
+        "I fix it upstream so the next person doesn't have to.")
+    assert "\u2014" not in s.get_text()
     assert "band--dark" in s["class"] and "$ git log --author=brian316" in s.get_text(" ", strip=True).replace("$  ", "$ ")
     rows = s.select(".oss__row")
     assert len(rows) == 6 and rows[0].select_one(".status--merged") and s.select_one(".status--open")

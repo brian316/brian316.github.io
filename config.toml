@@ -11,7 +11,7 @@ build_search_index = true
 skip_content_templating = ["**/*.md"]
 
 title = "Brian Duenas | Software Engineer"
-description = "Brian Duenas — software engineer building cloud, AI and distributed systems."
+description = "Brian Duenas is a software engineer who builds internal tools, cloud platforms and AI systems."
 
 [markdown]
 external_links_target_blank = true

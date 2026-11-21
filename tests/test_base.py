@@ -63,3 +63,8 @@ def test_favicon_from_initials(site):
     assert ico[:4] == b"\x00\x00\x01\x00" and int.from_bytes(ico[4:6], "little") >= 3  # 16/32/48
     for name in ["favicon-32.png", "apple-touch-icon.png"]:
         assert (site / name).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n", name
+
+
+def test_no_em_dashes_in_rendered_pages(site):
+    for u in ["/", "/resume/", "/blog/", "/about/"]:
+        assert "\u2014" not in (site / u.strip("/") / "index.html" if u != "/" else site / "index.html").read_text(), u
