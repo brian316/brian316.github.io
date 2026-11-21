@@ -1,5 +1,36 @@
 {% extends "base.html" %}
 
+{% block head_extra %}
+{% set w = load_data(path="data/work.toml") %}
+{% set person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": config.base_url ~ "/#person",
+    "name": config.extra.author,
+    "alternateName": ["bduenas", "brian316"],
+    "url": config.base_url ~ "/",
+    "image": get_url(path="images/profile.jpg"),
+    "jobTitle": config.extra.role,
+    "worksFor": {"@type": "Organization", "name": config.extra.employer},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "California State University, San Bernardino"},
+    "description": config.description,
+    "sameAs": [
+        "https://github.com/" ~ config.extra.github,
+        "https://www.linkedin.com/in/" ~ config.extra.linkedin,
+        w.founder.url
+    ]
+} %}
+{% set website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": config.extra.author,
+    "url": config.base_url ~ "/",
+    "author": {"@id": config.base_url ~ "/#person"}
+} %}
+<script type="application/ld+json">{{ person | json_encode | safe }}</script>
+<script type="application/ld+json">{{ website | json_encode | safe }}</script>
+{% endblock head_extra %}
+
 {% block main %}
 {% set r = load_data(path="data/resume.toml") %}
 {% set w = load_data(path="data/work.toml") %}

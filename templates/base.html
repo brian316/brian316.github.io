@@ -11,6 +11,13 @@
     <link rel="apple-touch-icon" href="{{ get_url(path='apple-touch-icon.png') }}">
     <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
     <meta property="og:description" content="{{ config.description }}">
+    {% if current_url %}
+    <link rel="canonical" href="{{ current_url }}">
+    <meta property="og:url" content="{{ current_url }}">
+    {% else %}
+    <meta name="robots" content="noindex">
+    {% endif %}
+    <meta property="og:site_name" content="{{ config.extra.author }}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="{{ get_url(path='images/profile.jpg') }}">
     <meta name="twitter:card" content="summary">
@@ -19,6 +26,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
     <link rel="stylesheet" href="{{ get_url(path='theme.css') }}">
     <link rel="stylesheet" href="{{ get_url(path='giallo.css') }}">
+    {% block head_extra %}{% endblock head_extra %}
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>

@@ -73,3 +73,41 @@ def test_no_em_dashes_in_rendered_pages(site):
 def test_no_theme_submodule():
     assert not (ROOT / "themes").exists()
     assert not (ROOT / ".gitmodules").exists()
+
+
+SEO_PAGES = ["/", "/resume/", "/blog/", "/about/", "/notes/macos-sd-card-read-only/"]
+
+
+def test_canonical_and_og_url_on_every_page(site):
+    for u in SEO_PAGES:
+        s = html(site, u)
+        want = "https://bduenas.com" + u
+        assert s.select_one('link[rel="canonical"]')["href"] == want, u
+        assert s.select_one('meta[property="og:url"]')["content"] == want, u
+
+
+def test_person_structured_data_on_home(site):
+    import json
+    blocks = [json.loads(t.string) for t in html(site, "/").select('script[type="application/ld+json"]')]
+    person = next(b for b in blocks if b.get("@type") == "Person")
+    assert person["name"] == "Brian Duenas" and person["url"] == "https://bduenas.com/"
+    assert person["jobTitle"] == "Quantum Applications Engineer"
+    assert person["worksFor"] == {"@type": "Organization", "name": "IBM"}
+    assert person["image"] == "https://bduenas.com/images/profile.jpg"
+    assert set(person["sameAs"]) == {"https://github.com/brian316", "https://www.linkedin.com/in/duenas-brian", "https://gathrlyapp.com/"}
+    assert "alternateName" in person and "bduenas" in person["alternateName"]
+    assert "email" not in person and "telephone" not in person
+    site_block = next(b for b in blocks if b.get("@type") == "WebSite")
+    assert site_block["url"] == "https://bduenas.com/"
+
+
+def test_page_titles_lead_with_name(site):
+    assert html(site, "/").title.get_text(strip=True) == "Brian Duenas | Software Engineer"
+    assert html(site, "/resume/").title.get_text(strip=True).endswith("Brian Duenas")
+
+
+def test_404_not_indexed_and_no_canonical(site):
+    from bs4 import BeautifulSoup
+    s = BeautifulSoup((site / "404.html").read_text(), "html.parser")
+    assert not s.select_one('link[rel="canonical"]')
+    assert s.select_one('meta[name="robots"]')["content"] == "noindex"
