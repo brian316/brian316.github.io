@@ -1,2 +1,21 @@
 {% extends "base.html" %}
-{% block main %}<h1>{{ page.title }}</h1>{{ page.content | safe }}{% endblock main %}
+
+{% block title %}{{ page.title }} · {{ config.extra.author }}{% endblock title %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+{% block description %}{{ page.description or config.description }}{% endblock description %}
+
+{% block main %}
+<article class="container post">
+    <header class="page-head">
+        <p class="eyebrow">{{ "Note" if page.components[0] == "notes" else "Blog" }} · <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">{{ page.date | date(format="%b %-d, %Y") }}</time></p>
+        <h1 class="display-lg">{{ page.title }}</h1>
+        {% if page.description %}<p class="deck">{{ page.description }}</p>{% endif %}
+    </header>
+    <div class="prose">
+        {{ page.content | safe }}
+    </div>
+    <footer class="post__foot">
+        <a class="text-link back-link" href="{{ get_url(path='@/blog/_index.md') }}"><span aria-hidden="true">←</span> Back to writing</a>
+    </footer>
+</article>
+{% endblock main %}

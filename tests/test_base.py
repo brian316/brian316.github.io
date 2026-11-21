@@ -44,3 +44,11 @@ def test_author_typo_fixed(site):
 
 def test_404(site):
     assert "Page not found" in (site / "404.html").read_text()
+
+
+def test_internal_section_links_keep_trailing_slash(site):
+    # /blog, /resume, /about without a slash cost a redirect on GitHub Pages
+    hrefs = [a["href"] for a in html(site, "/").select("a[href]")]
+    for h in hrefs:
+        if h.startswith("https://bduenas.com/") and "." not in h.rsplit("/", 1)[-1] and "#" not in h:
+            assert h.endswith("/"), h

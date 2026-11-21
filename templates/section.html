@@ -1,2 +1,18 @@
 {% extends "base.html" %}
-{% block main %}<h1>{{ section.title }}</h1>{% endblock main %}
+
+{% block title %}{{ section.title }} · {{ config.extra.author }}{% endblock title %}
+{% block og_title %}{{ section.title }} · {{ config.extra.author }}{% endblock og_title %}
+
+{% block main %}
+<section class="container page-head">
+    <h1 class="display-lg">{{ section.title }}</h1>
+    {% if section.pages and section.content %}<div class="prose">{{ section.content | safe }}</div>{% endif %}
+</section>
+<section class="container page-body">
+    {% if section.pages %}
+    {{<ui.page_rows pages={section.pages} />}}
+    {% else %}
+    <div class="prose">{{ section.content | safe }}</div>
+    {% endif %}
+</section>
+{% endblock main %}

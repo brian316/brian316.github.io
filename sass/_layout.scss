@@ -115,3 +115,25 @@
     display: grid;
     gap: 20px;
 }
+
+// Page scaffolding -----------------------------------------------------
+.page-head {
+    display: grid;
+    gap: 20px;
+    padding-top: 72px;
+    padding-bottom: 48px;
+
+    @media (min-width: $bp-sm) { padding-top: 104px; padding-bottom: 56px; }
+
+    .deck, .prose { max-width: 62ch; }
+}
+
+.page-body { padding-bottom: 104px; }
+
+.post .prose { padding-bottom: 56px; }
+
+.post__foot {
+    max-width: 760px;
+    padding: 28px 0 104px;
+    border-top: 1px solid var(--rule);
+}

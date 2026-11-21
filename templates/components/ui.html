@@ -13,3 +13,28 @@
     {% if href %}<a class="eyebrow section-head__link" href="{{ href }}">{{ link_text }} <span aria-hidden="true">→</span></a>{% endif %}
 </div>
 {% endcomponent ui.section_head %}
+
+{% component ui.row(href: string, date: string, title: string, deck: string = "", label: string = "", datetime: string = "") %}
+<article class="row">
+    <div class="row__date">{% if datetime %}<time datetime="{{ datetime }}">{{ date }}</time>{% else %}{{ date }}{% endif %}</div>
+    <div class="row__body">
+        <h3 class="row__title"><a href="{{ href }}">{{ title }}</a></h3>
+        {% if deck | trim %}<p class="row__deck">{{ deck | trim }}</p>{% endif %}
+        {% if label %}<div class="row__tags"><span>{{ label }}</span></div>{% endif %}
+    </div>
+    <span class="row__arrow" aria-hidden="true">→</span>
+</article>
+{% endcomponent ui.row %}
+
+{% component ui.page_rows(pages, empty: string = "First post coming soon.") %}
+{% if pages %}
+<div class="rows">
+    {% for p in pages %}
+    {% set deck = p.description or (p.summary | striptags if p.summary else "") %}
+    {{<ui.row href={p.permalink} date={p.date | date(format="%b %-d, %Y")} datetime={p.date | date(format="%Y-%m-%d")} title={p.title} deck={deck} label={"NOTE" if p.components[0] == "notes" else "BLOG"} />}}
+    {% endfor %}
+</div>
+{% else %}
+<p class="deck">{{ empty }}</p>
+{% endif %}
+{% endcomponent ui.page_rows %}

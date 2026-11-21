@@ -19,14 +19,14 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
         <div class="container site-header__inner">
-            <a class="wordmark" href="{{ get_url(path='/') }}">{{ config.extra.author }}</a>
+            <a class="wordmark" href="{{ config.base_url ~ '/' }}">{{ config.extra.author }}</a>
             <div class="site-header__right">
                 <nav aria-label="Primary">
                     <ul class="nav">
-                        <li><a class="nav__link" href="{{ get_url(path='/') }}#work">Work</a></li>
-                        <li><a class="nav__link" href="{{ get_url(path='blog/') }}">Writing</a></li>
-                        <li><a class="nav__link" href="{{ get_url(path='resume/') }}">Resume</a></li>
-                        <li><a class="nav__link" href="{{ get_url(path='about/') }}">About</a></li>
+                        <li><a class="nav__link" href="{{ config.base_url ~ '/' }}#work">Work</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='@/blog/_index.md') }}">Writing</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='@/resume/_index.md') }}">Resume</a></li>
+                        <li><a class="nav__link" href="{{ get_url(path='@/about/_index.md') }}">About</a></li>
                     </ul>
                 </nav>
                 {{<ui.icon_links extra={config.extra} class="site-header__icons" />}}
